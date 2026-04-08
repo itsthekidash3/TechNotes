@@ -1,4 +1,4 @@
-AI 
+/* AI 
 
  Transformer architecture (2017).
 Tokenization: The Currency of AI
@@ -93,7 +93,7 @@ Generate Content : Prompting + Structured Output
 
 Tools use : Let AI take action
 Agents : Multi-step Automation
-Multimodal : Analyze images/Docs
+Multimodal : Analyze images/Docs */
 
 
 
