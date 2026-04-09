@@ -18,3 +18,13 @@
 
 # Install: npx ecc-install python  |  npm i -g @aisuite/chub  |  Source: github.com/affaan-m/everything-claude-code
 
+# # First thing you type inside the session:
+# /init
+
+# /init scans your repo and generates a CLAUDE.md with build commands, file structure, and conventions. Review it, tweak it, commit it.
+
+# Instructions that only load when Claude touches matching files
+
+# .claude/rules/frontend.md - These live in .claude/rules/. Unlike CLAUDE.md (always loaded), rules only consume context when relevant files are touched. Keeps things lean.
+
+
