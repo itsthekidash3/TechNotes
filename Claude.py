@@ -27,4 +27,6 @@
 
 # .claude/rules/frontend.md - These live in .claude/rules/. Unlike CLAUDE.md (always loaded), rules only consume context when relevant files are touched. Keeps things lean.
 
+# file:///Users/ash/Downloads/hackathon-claude-tips-FIXED.html
+
 
