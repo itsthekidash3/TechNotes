@@ -1,80 +1,127 @@
-# better prompt: 
-# Role
-# Context
-# Task
-# Constraints 
-# Format
+"""
+Claude / CLI Notes (TechNotes)
 
+What this is:
+- A personal cheat sheet of Claude (and related) CLI commands + workflow tips.
 
+Why it exists:
+- To quickly recall "what to type" during a coding session (planning, TDD, review, security, fixing builds),
+  and to document small productivity shortcuts (keybinds, flags, file conventions).
 
-# /plan — Plan Architecture Before Coding
-# Decompose your problem into components, define interfaces, and identify risks before writing a line of code. Prevents the "build first, think later" trap.
+How to use:
+- Skim the sections below depending on what stage you’re in:
+  Plan → Test → Review → Secure → Fix → Summarize/Manage context.
+"""
 
-# /tdd — Test-Driven Development
-# Write tests first, then implement. Catches silent failures early — exactly the kind of bugs that plague agent systems.
+# -----------------------------------------------------------------------------
+# 1) Prompt structure (for better results)
+# -----------------------------------------------------------------------------
+# A simple template for writing strong prompts:
+# - Role: who the assistant should act as
+# - Context: relevant background (repo, constraints, environment)
+# - Task: what you want done
+# - Constraints: rules (no network, specific libraries, etc.)
+# - Format: exact output format you want (bullets, JSON, patch, etc.)
 
-# /code-review — Review Your Changes
-#nAutomated quality review before you commit. Spots logic errors, missing edge cases, and code that should be deterministic vs. LLM-driven.
+# -----------------------------------------------------------------------------
+# 2) High-signal slash commands (workflow)
+# -----------------------------------------------------------------------------
+# /plan
+#   Plan architecture before coding:
+#   break the problem into components, define interfaces, and identify risks.
 
-# /security — Security Audit
-# Scan for prompt injection, leaked secrets, insecure tool use, and OWASP vulnerabilities. Essential when your agents have tool access.
+# /tdd
+#   Test-driven development:
+#   write tests first, then implement to catch silent failures early.
 
-# /build-fix — Fix Build Errors
-# Automatically diagnose and fix build failures. Reads error output, traces the root cause, and applies the fix — so you stay in flow.
+# /code-review
+#   Automated review before commit:
+#   spot logic errors, missing edge cases, and nondeterministic code paths.
 
-# chub — Context Hub: Curated API Docs
-# Agents fetch verified API docs instead of guessing. Annotates gaps it discovers so the next session starts smarter.
+# /security
+#   Security audit:
+#   check for prompt injection, leaked secrets, insecure tool use, OWASP-style issues.
 
-# /compact	Summarize to free context
+# /build-fix
+#   Diagnose and fix build failures from error output; trace root cause and apply a fix.
 
-# Ctrl+G	Open prompt in $EDITOR
+# /compact
+#   Summarize the conversation to free up context window.
 
-# Ctrl+J	Newline without sending
+# ----------------------------------------------------------------------------
+# 3) Useful shortcuts / keybind reminders
+# ----------------------------------------------------------------------------
+# Ctrl+G  : Open prompt in $EDITOR
+# Ctrl+J  : Insert newline without sending
+# Cmd+P   : Open model picker
+# Ctrl+T  : Toggle task list
 
-# Cmd+P	Open model picker
+# -----------------------------------------------------------------------------
+# 4) Setup / install references
+# -----------------------------------------------------------------------------
+# Install helpers (examples you’ve referenced):
+# - npx ecc-install python
+# - npm i -g @aisuite/chub
+#
+# Source you noted:
+# - github.com/affaan-m/everything-claude-code
 
-# Ctrl+T	Toggle task list
-
-# Install: npx ecc-install python  |  npm i -g @aisuite/chub  |  Source: github.com/affaan-m/everything-claude-code
-
-# # First thing you type inside the session:
+# -----------------------------------------------------------------------------
+# 5) Project initialization
+# -----------------------------------------------------------------------------
 # /init
+#   Scans a repo and generates CLAUDE.md with:
+#   - build commands
+#   - file structure
+#   - conventions
+#   Review, tweak, and commit it.
 
-# /init scans your repo and generates a CLAUDE.md with build commands, file structure, and conventions. Review it, tweak it, commit it.
+# -----------------------------------------------------------------------------
+# 6) Rules + subagents (file conventions)
+# -----------------------------------------------------------------------------
+# Always-on project instructions:
+# - CLAUDE.md (loaded for the whole repo/session)
 
-# Instructions that only load when Claude touches matching files
+# Conditional rules (loaded only when relevant files are touched):
+# - .claude/rules/*.md
+# Example:
+# - .claude/rules/frontend.md
 
-# .claude/rules/frontend.md - These live in .claude/rules/. Unlike CLAUDE.md (always loaded), rules only consume context when relevant files are touched. Keeps things lean.
+# Subagents:
+# - Markdown files in .claude/agents/
 
-# file:///Users/ash/Downloads/hackathon-claude-tips-FIXED.html
+# -----------------------------------------------------------------------------
+# 7) Hooks / guardrails (concept notes)
+# -----------------------------------------------------------------------------
+# Hooks you noted:
+# - pretooluse
+# - posttooluse
+# - notifications (e.g., osascript)
 
+# Guardrails idea:
+# - constrain allowed tools and output format to reduce hallucinations / unsafe actions.
 
-# skill creation:
-#name: setup
-#description: Install dependencies and configure the local dev environment
-#disable-model-invocation: true
-#allowed-tools:
+# -----------------------------------------------------------------------------
+# 8) CLI flags / patterns you noted
+# -----------------------------------------------------------------------------
+# Headless / print usage (conceptual):
+# - "-p" / "--print": run headless, print output, and exit (depending on the CLI wrapper)
 
+# Example patterns you wrote down:
+# - claude --bare -p "prompt" --allowedtools "allowedTools"
+# - claude --worktree feature-auth
 
-#hooks: guardrails
-# posttooluse
-# pretooluse
-# notification : osasscript
+# -----------------------------------------------------------------------------
+# 9) Misc terminal reminders
+# -----------------------------------------------------------------------------
+# grep / jq + pipes:
+# - use pipes to filter output: cmd | grep ... | jq ...
 
-# headless mode : -p flag
-# --print flag (run headless, print output, exit) : claude -p "find bugs in this code" -p : print, and give it a prompt on what to do
-# output format, allowedtools
-# gaurdrails, and less hallucination
+# cat:
+# - "concatenate" → prints file contents to stdout
 
-# grep, jq, | - pipe/filter
-# cat stands for "concatenate". It reads a file and prints its contents to the terminal (stdout).
-
-# claude --bare -p "prompt" --allowedtools "allowedTools"
-
-# claude --worktree feature-auth - multiple worktree and branches
-
+# -----------------------------------------------------------------------------
+# 10) Reasoning mode keyword you noted
+# -----------------------------------------------------------------------------
 # "Ultrathink"
-# One word. Maximum reasoning.
-
-# A subagent is a markdown file in .claude/agents/
-
+# - One-word instruction you noted for maximum reasoning depth.
