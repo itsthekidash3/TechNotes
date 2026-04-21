@@ -15,6 +15,12 @@
 - **Container:** A running instance of an image.
 - Images are built in **layers** (base OS layer → runtime/deps → app).
 
+docker commands
+docker pull 
+docker build
+docker run
+docker compose up
+
 ## Common Dockerfile instructions
 - `FROM` — base image to start from (pulled from a registry).
 - `RUN` — run commands during build (install packages, setup).
@@ -35,3 +41,17 @@
 
 ### Worker nodes
 - Machines/VMs that actually run containers (e.g., DB node, streaming node, etc.).
+
+port binidng
+
+docker container from docker hub
+developing a js app, with mongo db using the image from dockerr hub
+commit to git or other vc
+triggers a continous integrration - jenkins
+builds js apps and creates docker image
+
+
+
+cretae a docker image out of that js artifact
+poush to private docker repository
+devserver pulls the images
