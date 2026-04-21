@@ -1,35 +1,37 @@
-Docker: Package for what to install. Has dependdenices in it
- packages are identical. Deploy them. solves oh it works on my machine problem.
- Package up eveything the app needs to run. works the smae
+# Docker & Kubernetes (Quick Notes)
 
- packages are individual . without any coordination.
- kubernters comes here for coordination
+## Docker (containers)
+- **Goal:** Package an app so it runs the same everywhere (solves *“works on my machine”*).
+- A container includes:
+  - App code
+  - Required runtime (e.g., Python 3.11, Node 18)
+  - Dependencies
+  - Configuration
+- Containers **share the host OS kernel** (lighter than full virtual machines).
 
- Kubernteres control plane decides how many packages, wjere to deploy, auto replaces the failed containers, and coordiantrs the whole operation
+## Key terms
+- **Dockerfile:** Recipe/instructions to build an image.
+- **Image:** Built package (template) created from a Dockerfile.
+- **Container:** A running instance of an image.
+- Images are built in **layers** (base OS layer → runtime/deps → app).
 
- Kubernters control plane : API server : takes orders, scheduler : which server to load, controller : keep it running
- 
- Worker nodes ( virtual severs) : serve1 - database, sevrer2 - db, sever3 -  streaming wtc...
+## Common Dockerfile instructions
+- `FROM` — base image to start from (pulled from a registry).
+- `RUN` — run commands during build (install packages, setup).
+- `ENV` — set environment variables.
+- `CMD` — default command when the container starts.
 
-  The app code                                            
-  - The exact runtime it needs (Python 3.11, Node 18, etc.)                                                                                                                       
-  - Its dependencies (pip install, npm install)            
-  - Its config
+## Kubernetes (coordination/orchestration)
+- Docker packages apps, but running many containers needs coordination.
+- Kubernetes:
+  - Decides **how many** containers to run and **where** to run them.
+  - Replaces failed containers automatically.
+  - Manages/coordinates the whole deployment.
 
-  - Docker engine
-  - virtulazie the OS. share the smae kernel
-  - Dokcer file : code , the image : builds the code and spins the container, the contianer
-  start from a templaetae image
-FROM : pulss the image from the cloud
-RUN : run a terminal command, install dependencis
-ENV env variables
-CMD : default command that executes when you start up a command
+### Control plane (the “brains”)
+- **API Server:** entry point for commands/requests.
+- **Scheduler:** picks which node runs which workload.
+- **Controller Manager:** keeps the desired state running (repairs/replaces).
 
-Container is a layersd of images. At the bottom we have linux , and that leads upto the application image
-dockerfile: This is how you build it
-
-My problem is writting and intution. I am not good enough or i dont know how to do this yet. i am lazy as fuck to commit to wriritng code. but working make
-s the dopamine hit
-
- 
- 
+### Worker nodes
+- Machines/VMs that actually run containers (e.g., DB node, streaming node, etc.).
