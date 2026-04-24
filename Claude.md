@@ -55,6 +55,7 @@ How to use:
 # Ctrl+J  : Insert newline without sending
 # Cmd+P   : Open model picker
 # Ctrl+T  : Toggle task list
+# ctrl + b : to run separtae features
 
 # -----------------------------------------------------------------------------
 # 4) Setup / install references
