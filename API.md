@@ -1,62 +1,58 @@
-API : set of rules that allows software systems to communicate with each other
-REST : resource based ofr web servers, json, intiuitve
-GraphQL : query language, reduce network load, exactly the data they need
-gRPC : high performance for microservices, buffers and high performers
-SOAP : XML-based for enterprise systems, 
-WebSocket : bi-directional for low latenmct data exchange
+API: Rules that let software systems communicate.
 
-HTTPS : POST, GET, PUT, DELETE
+API styles/protocols:
+- REST: Resource-based web APIs, typically JSON.
+- GraphQL: Query language; clients request exactly what they need.
+- gRPC: High-performance RPC for microservices (Protocol Buffers).
+- SOAP: XML-based, common in enterprise.
+- WebSocket: Persistent, bi-directional, low-latency communication.
 
-200 - sucess
-400 -  client level wrongness
-500 - server level wrong
+HTTP methods (common in REST):
+- GET, POST, PUT, DELETE (over HTTPS)
 
-Headers and cookies
+Common status codes:
+- 200: Success
+- 400: Client error
+- 500: Server error
 
-Authentication : Tokens, JWT : header and payload, needs a signature, Oauth is widely used, session based authentication
+Request components:
+- Headers, cookies
 
-redis
+Authentication:
+- Tokens (incl. JWT: header + payload + signature)
+- OAuth
+- Session-based auth
 
-API: Swagger, Postman, OpenAPI
+API tools/specs:
+- OpenAPI
+- Swagger
+- Postman
 
-API features:
+Key features:
+- Pagination
+- Versioning
+- Query params vs path params
+- Idempotency (safe to retry without unintended effects)
 
-Pagiantion : returns results in managable chuncks
-API versioning : leting apis evolve
-URL< Query, 
-path parameters : enables flexible input handling
-Idempotency : operations can be safely retrieved
+Performance & scaling:
+- Caching (e.g., Redis), rate limiting, load balancing
+- Indexing, performance testing
+- Vertical vs horizontal scaling
 
-API performance:
-Caching
-Rate LImiting
-Load Ba;lancing
-Pagination
-Indexing
-Scaling
-Performce testing
-
-vertical scaling, horizontal scaling
-
-API gateway:
-
-services ...
-AWS api gate way
-Ngnix
-Kong : open source
+API gateway examples:
+- AWS API Gateway
+- NGINX
+- Kong
 
 Frameworks:
-Flask,
-Node.js
-Django,
-Spring
-FastAPI
+- Flask
+- Django
+- FastAPI
+- Node.js
+- Spring
 
-
-Integration Patterns:
-Sync vs Async
-Webhooks : event driven integration
-Batch processing : large data volumes
-Messague Queue : reliable delivery
-
- 
+Integration patterns:
+- Sync vs async
+- Webhooks
+- batch processing
+- message queues
