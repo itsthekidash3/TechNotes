@@ -1,128 +1,99 @@
-"""
-Claude / CLI Notes (TechNotes)
+# Claude CLI Notes (TechNotes)
 
-What this is:
-- A personal cheat sheet of Claude (and related) CLI commands + workflow tips.
+Personal cheat sheet for Claude (and related) CLI commands, workflows, and small terminal shortcuts.
 
-Why it exists:
-- To quickly recall "what to type" during a coding session (planning, TDD, review, security, fixing builds),
-  and to document small productivity shortcuts (keybinds, flags, file conventions).
+Use by stage: **Plan → Test → Review → Secure → Fix → Summarize**
 
-How to use:
-- Skim the sections below depending on what stage you’re in:
-  Plan → Test → Review → Secure → Fix → Summarize/Manage context.
-"""
+---
 
-# -----------------------------------------------------------------------------
-# 1) Prompt structure (for better results)
-# -----------------------------------------------------------------------------
-# A simple template for writing strong prompts:
-# - Role: who the assistant should act as
-# - Context: relevant background (repo, constraints, environment)
-# - Task: what you want done
-# - Constraints: rules (no network, specific libraries, etc.)
-# - Format: exact output format you want (bullets, JSON, patch, etc.)
+## Prompt template (high-signal)
 
-# -----------------------------------------------------------------------------
-# 2) High-signal slash commands (workflow)
-# -----------------------------------------------------------------------------
-# /plan
-#   Plan architecture before coding:
-#   break the problem into components, define interfaces, and identify risks.
+- **Role**: who the assistant should be
+- **Context**: repo/background/constraints
+- **Task**: what you want done
+- **Constraints**: rules (e.g., no network, specific libs)
+- **Output format**: bullets / JSON / patch / etc.
 
-# /tdd
-#   Test-driven development:
-#   write tests first, then implement to catch silent failures early.
+---
 
-# /code-review
-#   Automated review before commit:
-#   spot logic errors, missing edge cases, and nondeterministic code paths.
+## Workflow slash commands
 
-# /security
-#   Security audit:
-#   check for prompt injection, leaked secrets, insecure tool use, OWASP-style issues.
+- **/plan** — design first (components, interfaces, risks)
+- **/tdd** — write tests first, then implement
+- **/code-review** — catch logic/edge cases/nondeterminism
+- **/security** — audit for secrets, unsafe tool use, OWASP-style issues
+- **/build-fix** — diagnose build failures from logs/errors
+- **/compact** — summarize to save context
 
-# /build-fix
-#   Diagnose and fix build failures from error output; trace root cause and apply a fix.
+---
 
-# /compact
-#   Summarize the conversation to free up context window.
+## Keybind reminders
 
-# ----------------------------------------------------------------------------
-# 3) Useful shortcuts / keybind reminders
-# ----------------------------------------------------------------------------
-# Ctrl+G  : Open prompt in $EDITOR
-# Ctrl+J  : Insert newline without sending
-# Cmd+P   : Open model picker
-# Ctrl+T  : Toggle task list
-# ctrl + b : to run separtae features
+- **Ctrl+G** — open prompt in `$EDITOR`
+- **Ctrl+J** — insert newline without sending
+- **Cmd+P** — model picker
+- **Ctrl+T** — toggle task list
+- **Ctrl+B** — run separate features (note: verify exact behavior in your setup)
 
-# -----------------------------------------------------------------------------
-# 4) Setup / install references
-# -----------------------------------------------------------------------------
-# Install helpers (examples you’ve referenced):
-# - npx ecc-install python
-# - npm i -g @aisuite/chub
-#
-# Source you noted:
-# - github.com/affaan-m/everything-claude-code
+---
 
-# -----------------------------------------------------------------------------
-# 5) Project initialization
-# -----------------------------------------------------------------------------
-# /init
-#   Scans a repo and generates CLAUDE.md with:
-#   - build commands
-#   - file structure
-#   - conventions
-#   Review, tweak, and commit it.
+## Setup / install references
 
-# -----------------------------------------------------------------------------
-# 6) Rules + subagents (file conventions)
-# -----------------------------------------------------------------------------
-# Always-on project instructions:
-# - CLAUDE.md (loaded for the whole repo/session)
+- `npx ecc-install python`
+- `npm i -g @aisuite/chub`
 
-# Conditional rules (loaded only when relevant files are touched):
-# - .claude/rules/*.md
-# Example:
-# - .claude/rules/frontend.md
+Reference: https://github.com/affaan-m/everything-claude-code
 
-# Subagents:
-# - Markdown files in .claude/agents/
+---
 
-# -----------------------------------------------------------------------------
-# 7) Hooks / guardrails (concept notes)
-# -----------------------------------------------------------------------------
-# Hooks you noted:
-# - pretooluse
-# - posttooluse
-# - notifications (e.g., osascript)
+## Project initialization
 
-# Guardrails idea:
-# - constrain allowed tools and output format to reduce hallucinations / unsafe actions.
+- **/init** — scans a repo and generates `CLAUDE.md`:
+  - build commands
+  - file structure
+  - conventions
 
-# -----------------------------------------------------------------------------
-# 8) CLI flags / patterns you noted
-# -----------------------------------------------------------------------------
-# Headless / print usage (conceptual):
-# - "-p" / "--print": run headless, print output, and exit (depending on the CLI wrapper)
+Review, tweak, and commit.
 
-# Example patterns you wrote down:
-# - claude --bare -p "prompt" --allowedtools "allowedTools"
-# - claude --worktree feature-auth
+---
 
-# -----------------------------------------------------------------------------
-# 9) Misc terminal reminders
-# -----------------------------------------------------------------------------
-# grep / jq + pipes:
-# - use pipes to filter output: cmd | grep ... | jq ...
+## Rules + subagents (file conventions)
 
-# cat:
-# - "concatenate" → prints file contents to stdout
+- **Always-on instructions**: `CLAUDE.md`
+- **Conditional rules**: `.claude/rules/*.md` (e.g. `.claude/rules/frontend.md`)
+- **Subagents**: `.claude/agents/*.md`
 
-# -----------------------------------------------------------------------------
-# 10) Reasoning mode keyword you noted
-# -----------------------------------------------------------------------------
-# "Ultrathink"
-# - One-word instruction you noted for maximum reasoning depth.
+---
+
+## Hooks / guardrails (concepts)
+
+Hooks you noted:
+- `pretooluse`
+- `posttooluse`
+- notifications (e.g., `osascript`)
+
+Guardrail idea: restrict allowed tools + required output formats to reduce unsafe/hallucinated actions.
+
+---
+
+## CLI flags / patterns (concepts)
+
+- Headless / print:
+  - `-p` / `--print` (depends on wrapper)
+
+Examples:
+- `claude --bare -p "prompt" --allowedtools "allowedTools"`
+- `claude --worktree feature-auth`
+
+---
+
+## Terminal reminders
+
+- Pipes: `cmd | grep ... | jq ...`
+- `cat` prints file contents to stdout
+
+---
+
+## Reasoning keyword you noted
+
+- **Ultrathink** — one-word “go deep” instruction
