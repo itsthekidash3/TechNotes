@@ -58,3 +58,9 @@ Integration patterns:
 - message queues
 
 
+API thinking:
+
+                                                                                                                                                                                 
+  1. What am I sending?                                                                                                                                                           
+  2. What are they promising back?                                                                    
+  3. What do I do with it? 
